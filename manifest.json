@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mercado Livre Ad Inspect",
   "description": "Obtém detalhes de um anúncio do Mercado Livre.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Thiago B. Bittencourt",
   "content_scripts": [
     {
