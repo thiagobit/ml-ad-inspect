@@ -3,11 +3,19 @@
 async function init() {
     const adId = document.querySelector('meta[name="twitter:app:url:iphone"]')?.content.split('id=')[1];
 
+    if (adId == null) {
+        return;
+    }
+
     const apiResponse = await sendGetRequest(`https://api.mercadolibre.com/items?ids=${adId}`);
 
     const {
         body: {date_created},
     } = apiResponse[0] || null;
+
+    if (date_created == null) {
+        return;
+    }
 
     const today = new Date();
     const oneDay = 24 * 60 * 60 * 1000; // h * m * s * m
@@ -16,6 +24,10 @@ async function init() {
     const adDiffDays = Math.round(Math.abs(adStartTime - today) / oneDay);
 
     const container = document.querySelector('.ui-pdp-header__subtitle');
+
+    if (container == null) {
+        return;
+    }
 
     // o site do ML executa um refresh na página depois de 1,5 segundos. aguarde esse tempo para popular o DOM.
     setTimeout(() => {
