@@ -6,13 +6,13 @@ async function init() {
     const apiResponse = await sendGetRequest(`https://api.mercadolibre.com/items?ids=${adId}`);
 
     const {
-        body: {start_time},
+        body: {date_created},
     } = apiResponse[0] || null;
 
     const today = new Date();
     const oneDay = 24 * 60 * 60 * 1000; // h * m * s * m
 
-    const adStartTime = new Date(start_time);
+    const adStartTime = new Date(date_created);
     const adDiffDays = Math.round(Math.abs(adStartTime - today) / oneDay);
 
     const container = document.querySelector('.ui-pdp-header__subtitle');
